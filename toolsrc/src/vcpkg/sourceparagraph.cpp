@@ -276,6 +276,8 @@ namespace vcpkg
                 ret.toolsets.push_back(ToolsetVersion::V140);
             else if (str == "v141")
                 ret.toolsets.push_back(ToolsetVersion::V141);
+            else if (str == "v141_xp")
+                ret.toolsets.push_back(ToolsetVersion::V141);
             else if (str == "crt-static")
                 ret.crt_linkages.push_back(Linkage::STATIC);
             else if (str == "crt-dynamic")

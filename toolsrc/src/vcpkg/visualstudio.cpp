@@ -15,6 +15,7 @@ namespace vcpkg::VisualStudio
     static constexpr CStringView V_140 = "v140";
     static constexpr CStringView V_141 = "v141";
     static constexpr CStringView V_142 = "v142";
+    static constexpr CStringView V_141_XP = "v141_xp";
 
     struct VisualStudioInstance
     {
@@ -260,6 +261,16 @@ namespace vcpkg::VisualStudio
                         }
 
                         found_toolsets.push_back(std::move(toolset));
+
+                        //add additional toolsets
+                        if(fs.exists(vs_instance.root_path / "Common7" / "IDE" / "VC" / "VCTargets" /  "Platforms" / 
+                            "Win32" / "PlatformToolsets" / "v141_xp"))
+                        {
+                            Toolset toolset = Toolset{vs_instance.root_path, dumpbin_path, vcvarsall_bat,
+                                {}, V_141_XP, supported_architectures};
+                            found_toolsets.push_back(std::move(toolset));
+                        }
+
 
                         if (v140_is_available)
                         {
